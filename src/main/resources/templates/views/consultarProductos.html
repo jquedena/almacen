@@ -1,0 +1,84 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Consulta de Productos !</h1>
+  <!-- 
+  <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+   -->
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <!-- 
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+     -->
+    <div class="card-body">
+
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>C&oacute;digo</th>
+              <th>Descripci&oacute;n</th>
+              <th>Unid. Medida</th>
+              <th>Saldo Actual</th>
+              <th>Saldo Inicial</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- /.container-fluid -->
+<script type="text/javascript">
+$(document).ready(function() {
+  $.fn.dataTable.ext.errMode = 'none';
+  $('#dataTable').DataTable({
+      "processing": true,
+      "serverSide": true,
+      "ajax": "servicios/productos?maeCodigo=-1&maeDeslar=&almMarca=-1",
+      "columns": [
+          { "data": "maeCodigo" },
+          { "data": "maeDeslar" },
+          { "data": "maeUnidad" },
+          { "data": "maeSalini" },
+          { "data": "maeStock" },
+          { "data": "maeMonto" }
+      ],
+      "info": false,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": false,
+      "language": {
+            "decimal":        "",
+            "emptyTable":     "No hay datos disponibles",
+            "info":           "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            "infoEmpty":      "Mostrando 0 a 0 de 0 registros",
+            "infoFiltered":   "(filtered from _MAX_ total entries)",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "lengthMenu":     "Mostrar _MENU_ registros",
+            "loadingRecords": "Cargando...",
+            "processing":     "Procesando...",
+            "search":         "Buscar:",
+            "zeroRecords":    "No se encontraron registros",
+            "paginate": {
+                "first":      "Primero",
+                "last":       "Último",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
+            "aria": {
+                "sortAscending":  ": activate to sort column ascending",
+                "sortDescending": ": activate to sort column descending"
+            }
+        }
+  });
+});
+</script>

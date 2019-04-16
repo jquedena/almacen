@@ -1,0 +1,203 @@
+<div class="container">
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+      <!-- Nested Row within Card Body -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="p-5">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Crear Producto!</h1>
+            </div>
+            <form class="user">
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <label>C&oacute;digo :</label>
+                  <input type="text" class="form-control disabled" id="txtCodigo" readonly="true">
+                </div>
+                <div class="col-sm-6">
+                  <label>Marca :</label>
+                  <select class="form-control" id="cboMarca">
+                      <option>S</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <label>Descripci&oacute;n :</label>
+                  <input type="text" class="form-control" id="txtDescripcion">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <label>Especificaci&oacute;n :</label>
+                  <input type="text" class="form-control" id="txtEspecificacion">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label>Unidad Medida :</label>
+                  <select class="form-control" id="cboUnidad">
+                      <option>S</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <label>Saldo Inicial :</label>
+                  <input type="number" class="form-control" id="txtSaldoInicial">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <label>Saldo Final :</label>
+                  <input type="number" class="form-control" id="txtSaldoFinal">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label>Proveedor :</label>
+                  <select class="form-control" id="cboProveedor">
+                      <option>S</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <label>Monto :</label>
+                  <input type="number" class="form-control" id="txtMonto">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                  <div class="col-sm-8">
+                  </div>
+                  <div class="col-sm-2">
+                      <a href="#" data-toggle="modal" data-target="#confirmCancelarModal" class="btn btn-secondary btn-user btn-block">
+                          Cancelar
+                      </a>
+                  </div>
+                  <div class="col-sm-2">
+                      <a href="#" data-toggle="modal" data-target="#confirmGrabarModal" class="btn btn-primary btn-user btn-block">
+                          Aceptar
+                      </a>
+                  </div>
+              </div>
+              <hr>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="modal fade" id="confirmCancelarModal" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmaci&oacute;n</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&#215;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body">Perdera todos los datos ingresados &#191; Est&aacute; seguro de cancelar la operaci&oacute;n actual ?</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" type="button" onclick="cancelar();">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="confirmGrabarModal" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel-3" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmaci&oacute;n</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&#215;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body">&#191; Desea guardar los cambios realizados ?</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" type="button" onclick="aceptar();">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function cancelar() {
+    $("#txtCodigo").val("");
+    $("#cboMarca").val("-");
+    $("#txtDescripcion").val("");
+    $("#txtEspecificacion").val("");
+    $("#cboUnidad").val("-");
+    $("#txtSaldoInicial").val("");
+    $("#txtSaldoFinal").val("");
+    $("#cboProveedor").val("-");
+    $("#txtMonto").val("");
+
+    $('#confirmCancelarModal').modal('hide');
+}
+
+function aceptar() {
+    var request = {
+        "almMarca"      : $("#cboMarca").val(),
+        "maeDeslar"     : $("#txtDescripcion").val(),
+        "maeEspecif"    : $("#txtEspecificacion").val(),
+        "maeUnidad"     : $("#cboUnidad").val(),
+        "maeSalini"     : $("#txtSaldoInicial").val(),
+        "maeStock"      : $("#txtSaldoFinal").val(),
+        "almProveedor"  : $("#cboProveedor").val(),
+        "maeMonto"      : $("#txtMonto").val()
+    };
+    $.ajax({
+        type: "POST",
+        crossDomain: true,
+        url: "servicios/producto",
+        headers: {
+            "Content-Type": "application/json; charset=UTF8"
+        },
+        dataType: "json",
+        data: JSON.stringify(request),
+        success: function(data) {
+            // console.log(data);
+        }
+    });
+    // page('/productos');
+    $('#confirmGrabarModal').modal('hide');
+}
+
+var functionOK;
+
+$(document).ready(function() {
+    $('#confirmGrabarModal').on('hidden.bs.modal', function (e) {
+        console.log(e);
+    });
+
+    $.get( "servicios/unidades" , function( data ) {
+        var options = "<option value='-'>Seleccione</option>";
+        data.data.forEach(function(element) {
+            options += "<option value='" + element.uniCodigo + "'>" + element.uniDeslar + "</option>"
+        });
+        $("#cboUnidad").html(options);
+    });
+    $.get( "servicios/proveedores" , function( data ) {
+        var options = "<option value='-'>Seleccione</option>";
+        data.data.forEach(function(element) {
+            options += "<option value='" + element.prvCodigo + "'>" + element.prvRuc + '-' + element.prvNombre + "</option>"
+        });
+        $("#cboProveedor").html(options);
+    });
+    $.get( "servicios/marcas" , function( data ) {
+        var options = "<option value='-'>Seleccione</option>";
+        data.data.forEach(function(element) {
+            options += "<option value='" + element.marMarca + "'>" + element.marDeslar + "</option>"
+        });
+        $("#cboMarca").html(options);
+    });
+});
+</script>
