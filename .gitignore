@@ -52,3 +52,5 @@ target/
 .idea/sonarlint/
 
 .settings/
+.classpath
+.project
