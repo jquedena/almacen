@@ -144,6 +144,7 @@ function cancelar() {
 }
 
 function aceptar() {
+    $('#confirmGrabarModal').modal('hide');
     var request = {
         "almMarca"      : $("#cboMarca").val(),
         "maeDeslar"     : $("#txtDescripcion").val(),
@@ -164,11 +165,10 @@ function aceptar() {
         dataType: "json",
         data: JSON.stringify(request),
         success: function(data) {
-            // console.log(data);
+            $(".modal-backdrop").remove();
+            page('/productos');
         }
     });
-    // page('/productos');
-    $('#confirmGrabarModal').modal('hide');
 }
 
 var functionOK;

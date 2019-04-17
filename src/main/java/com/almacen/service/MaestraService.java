@@ -38,6 +38,20 @@ public class MaestraService {
         return pageOutDTO;
     }
 
+    @Transactional(readOnly = true)
+    public DataTableDTO<MaestraOutDTO> buscar() {
+        List<Maestra> maestras = maestraRepository.findAll();
+        List<MaestraOutDTO> out = maestras
+                .stream()
+                .map(MaestraOutDTO::new)
+                .collect(Collectors.toList());
+        DataTableDTO<MaestraOutDTO> pageOutDTO = new DataTableDTO<>();
+        pageOutDTO.setData(out);
+        pageOutDTO.setRecordsFiltered(maestras.size());
+        pageOutDTO.setRecordsTotal(maestras.size());
+        return pageOutDTO;
+    }
+
     @Transactional
     public MaestraOutDTO insertar(MaestraInDTO maestra) {
         return new MaestraOutDTO(maestraRepository.saveAndFlush(maestra.getMaestra()));

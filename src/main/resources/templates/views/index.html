@@ -65,7 +65,8 @@
             <h6 class="collapse-header">Operaciones:</h6>
             <a class="collapse-item" href="/producto">Registrar</a>
             <a class="collapse-item" href="/productos">Consultar</a>
-            <a class="collapse-item" href="/productos">Imprimir Cat&aacute;logo</a>
+            <a class="collapse-item" href="/productos/imprimir">Imprimir Cat&aacute;logo</a>
+            <form method="post" action="/reportes/producto" id="frmImprimir" target="_blank"></form>
           </div>
         </div>
       </li>
@@ -243,10 +244,13 @@
         loadPage(ctx, "ok");
     });
     page('/producto', function(ctx) {
-        loadPage(ctx, "paginas/producto");
+        loadPage(ctx, "/paginas/producto");
     });
     page('/productos', function(ctx) {
-        loadPage(ctx, "paginas/productos");
+        loadPage(ctx, "/paginas/productos");
+    });
+    page('/productos/imprimir', function(ctx) {
+        $("#frmImprimir").submit();
     });
     page('*', function(ctx) {
         loadPage(ctx, "ok");
